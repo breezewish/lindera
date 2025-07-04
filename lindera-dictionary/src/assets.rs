@@ -172,7 +172,7 @@ pub async fn fetch(
     };
 
     // environment variable passed to dependents, that will actually be used to include the dictionary in the library
-    println!("cargo::rustc-env=LINDERA_WORKDIR={}", build_dir.display());
+    println!("cargo:rustc-env=LINDERA_WORKDIR={}", build_dir.display());
 
     std::fs::create_dir_all(&build_dir)?;
 
