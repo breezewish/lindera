@@ -97,7 +97,10 @@ impl TokenFilter for JapaneseNumberTokenFilter {
             let tag = details[0..tags_len].join(",");
 
             // Determine whether to convert the token based on the config tags.
-            let should_convert = self.tags.as_ref().is_none_or(|tags| tags.contains(&tag));
+            let should_convert = match self.tags.as_ref() {
+                None => true,
+                Some(tags) => tags.contains(&tag),
+            };
 
             // If conversion is required, apply the Arabic numeral conversion.
             if should_convert {
